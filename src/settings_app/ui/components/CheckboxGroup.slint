@@ -1,0 +1,25 @@
+import { CheckBox } from "std-widgets.slint";
+
+export component CheckboxGroup inherits HorizontalLayout {
+    in property <string> label;
+    in-out property <bool> checked;
+    
+    callback toggled(bool);
+    
+    spacing: 10px;
+    alignment: start;
+    
+    CheckBox {
+        checked <=> root.checked;
+        
+        toggled => {
+            root.toggled(self.checked);
+        }
+    }
+    
+    Text {
+        text: label;
+        font-weight: 600;
+        vertical-alignment: center;
+    }
+}

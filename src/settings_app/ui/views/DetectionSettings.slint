@@ -1,0 +1,408 @@
+import { SliderGroup } from "../components/SliderGroup.slint";
+import { CheckboxGroup } from "../components/CheckboxGroup.slint";
+
+export component DetectionSettings inherits ScrollView {
+    // Properties for all detection settings
+    in-out property <float> detection-threshold-x: 3;
+    in-out property <float> detection-threshold-y: 3;
+    in-out property <float> upper-color-r: 154;
+    in-out property <float> upper-color-g: 165;
+    in-out property <float> upper-color-b: 175;
+    in-out property <float> lower-color-r: 141;
+    in-out property <float> lower-color-g: 88;
+    in-out property <float> lower-color-b: 58;
+    in-out property <float> min-contour-area: 261;
+    in-out property <float> density-threshold: 0.5;
+    in-out property <bool> enable-clustering: true;
+    in-out property <float> cluster-distance: 40;
+    in-out property <float> min-cluster-size: 1000;
+    in-out property <float> max-cluster-size: 20000;
+    in-out property <float> fov-x: 400;
+    in-out property <float> fov-y: 400;
+    in-out property <float> aim-fov-x: 400;
+    in-out property <float> aim-fov-y: 400;
+    in-out property <float> fps: 120;
+    in-out property <bool> auto-detect-resolution: true;
+    in-out property <float> resolution-x: 1920;
+    in-out property <float> resolution-y: 1080;
+    
+    // Callbacks
+    callback detection-threshold-x-changed(float);
+    callback detection-threshold-y-changed(float);
+    callback upper-color-r-changed(float);
+    callback upper-color-g-changed(float);
+    callback upper-color-b-changed(float);
+    callback lower-color-r-changed(float);
+    callback lower-color-g-changed(float);
+    callback lower-color-b-changed(float);
+    callback min-contour-area-changed(float);
+    callback density-threshold-changed(float);
+    callback enable-clustering-changed(bool);
+    callback cluster-distance-changed(float);
+    callback min-cluster-size-changed(float);
+    callback max-cluster-size-changed(float);
+    callback fov-x-changed(float);
+    callback fov-y-changed(float);
+    callback aim-fov-x-changed(float);
+    callback aim-fov-y-changed(float);
+    callback fps-changed(float);
+    callback auto-detect-resolution-changed(bool);
+    callback resolution-x-changed(float);
+    callback resolution-y-changed(float);
+    
+    VerticalLayout {
+        padding: 20px;
+        spacing: 20px;
+        
+        // Detection Threshold Section
+        Rectangle {
+            background: #f8f9fa;
+            border-radius: 8px;
+            
+            VerticalLayout {
+                padding: 15px;
+                spacing: 10px;
+                
+                Text {
+                    text: "Detection Threshold";
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #2c3e50;
+                }
+                
+                SliderGroup {
+                    label: "Threshold X";
+                    value <=> root.detection-threshold-x;
+                    minimum: 0;
+                    maximum: 10;
+                    
+                    value-changed(val) => {
+                        root.detection-threshold-x-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Threshold Y";
+                    value <=> root.detection-threshold-y;
+                    minimum: 0;
+                    maximum: 10;
+                    
+                    value-changed(val) => {
+                        root.detection-threshold-y-changed(val);
+                    }
+                }
+            }
+        }
+        
+        // Color Settings Section
+        Rectangle {
+            background: #f8f9fa;
+            border-radius: 8px;
+            
+            VerticalLayout {
+                padding: 15px;
+                spacing: 10px;
+                
+                Text {
+                    text: "Color Settings";
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #2c3e50;
+                }
+                
+                Text {
+                    text: "Upper Color (RGB)";
+                    font-weight: 600;
+                    color: #34495e;
+                }
+                
+                SliderGroup {
+                    label: "Red";
+                    value <=> root.upper-color-r;
+                    minimum: 0;
+                    maximum: 255;
+                    
+                    value-changed(val) => {
+                        root.upper-color-r-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Green";
+                    value <=> root.upper-color-g;
+                    minimum: 0;
+                    maximum: 255;
+                    
+                    value-changed(val) => {
+                        root.upper-color-g-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Blue";
+                    value <=> root.upper-color-b;
+                    minimum: 0;
+                    maximum: 255;
+                    
+                    value-changed(val) => {
+                        root.upper-color-b-changed(val);
+                    }
+                }
+                
+                Text {
+                    text: "Lower Color (RGB)";
+                    font-weight: 600;
+                    color: #34495e;
+                }
+                
+                SliderGroup {
+                    label: "Red";
+                    value <=> root.lower-color-r;
+                    minimum: 0;
+                    maximum: 255;
+                    
+                    value-changed(val) => {
+                        root.lower-color-r-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Green";
+                    value <=> root.lower-color-g;
+                    minimum: 0;
+                    maximum: 255;
+                    
+                    value-changed(val) => {
+                        root.lower-color-g-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Blue";
+                    value <=> root.lower-color-b;
+                    minimum: 0;
+                    maximum: 255;
+                    
+                    value-changed(val) => {
+                        root.lower-color-b-changed(val);
+                    }
+                }
+            }
+        }
+        
+        // Contour and Clustering Section
+        Rectangle {
+            background: #f8f9fa;
+            border-radius: 8px;
+            
+            VerticalLayout {
+                padding: 15px;
+                spacing: 10px;
+                
+                Text {
+                    text: "Contour & Clustering";
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #2c3e50;
+                }
+                
+                SliderGroup {
+                    label: "Min Contour Area";
+                    value <=> root.min-contour-area;
+                    minimum: 0;
+                    maximum: 1000;
+                    unit: " px²";
+                    
+                    value-changed(val) => {
+                        root.min-contour-area-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Density Threshold";
+                    value <=> root.density-threshold;
+                    minimum: 0;
+                    maximum: 1;
+                    
+                    value-changed(val) => {
+                        root.density-threshold-changed(val);
+                    }
+                }
+                
+                CheckboxGroup {
+                    label: "Enable Clustering";
+                    checked <=> root.enable-clustering;
+                    
+                    toggled(val) => {
+                        root.enable-clustering-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Cluster Distance";
+                    value <=> root.cluster-distance;
+                    minimum: 0;
+                    maximum: 100;
+                    unit: " px";
+                    
+                    value-changed(val) => {
+                        root.cluster-distance-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Min Cluster Size";
+                    value <=> root.min-cluster-size;
+                    minimum: 0;
+                    maximum: 5000;
+                    unit: " px²";
+                    
+                    value-changed(val) => {
+                        root.min-cluster-size-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Max Cluster Size";
+                    value <=> root.max-cluster-size;
+                    minimum: 5000;
+                    maximum: 50000;
+                    unit: " px²";
+                    
+                    value-changed(val) => {
+                        root.max-cluster-size-changed(val);
+                    }
+                }
+            }
+        }
+        
+        // Field of View Section
+        Rectangle {
+            background: #f8f9fa;
+            border-radius: 8px;
+            
+            VerticalLayout {
+                padding: 15px;
+                spacing: 10px;
+                
+                Text {
+                    text: "Field of View";
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #2c3e50;
+                }
+                
+                SliderGroup {
+                    label: "FOV X";
+                    value <=> root.fov-x;
+                    minimum: 100;
+                    maximum: 1000;
+                    unit: " px";
+                    
+                    value-changed(val) => {
+                        root.fov-x-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "FOV Y";
+                    value <=> root.fov-y;
+                    minimum: 100;
+                    maximum: 1000;
+                    unit: " px";
+                    
+                    value-changed(val) => {
+                        root.fov-y-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Aim FOV X";
+                    value <=> root.aim-fov-x;
+                    minimum: 100;
+                    maximum: 1000;
+                    unit: " px";
+                    
+                    value-changed(val) => {
+                        root.aim-fov-x-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Aim FOV Y";
+                    value <=> root.aim-fov-y;
+                    minimum: 100;
+                    maximum: 1000;
+                    unit: " px";
+                    
+                    value-changed(val) => {
+                        root.aim-fov-y-changed(val);
+                    }
+                }
+            }
+        }
+        
+        // Display Settings Section
+        Rectangle {
+            background: #f8f9fa;
+            border-radius: 8px;
+            
+            VerticalLayout {
+                padding: 15px;
+                spacing: 10px;
+                
+                Text {
+                    text: "Display Settings";
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #2c3e50;
+                }
+                
+                SliderGroup {
+                    label: "FPS";
+                    value <=> root.fps;
+                    minimum: 30;
+                    maximum: 240;
+                    unit: " fps";
+                    
+                    value-changed(val) => {
+                        root.fps-changed(val);
+                    }
+                }
+                
+                CheckboxGroup {
+                    label: "Auto Detect Resolution";
+                    checked <=> root.auto-detect-resolution;
+                    
+                    toggled(val) => {
+                        root.auto-detect-resolution-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Resolution X";
+                    value <=> root.resolution-x;
+                    minimum: 800;
+                    maximum: 3840;
+                    unit: " px";
+                    
+                    value-changed(val) => {
+                        root.resolution-x-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Resolution Y";
+                    value <=> root.resolution-y;
+                    minimum: 600;
+                    maximum: 2160;
+                    unit: " px";
+                    
+                    value-changed(val) => {
+                        root.resolution-y-changed(val);
+                    }
+                }
+            }
+        }
+    }
+}

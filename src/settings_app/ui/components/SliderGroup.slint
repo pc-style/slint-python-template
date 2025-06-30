@@ -1,0 +1,43 @@
+import { Slider } from "std-widgets.slint";
+
+export component SliderGroup inherits VerticalLayout {
+    in property <string> label;
+    in-out property <float> value;
+    in property <float> minimum;
+    in property <float> maximum;
+    in property <string> unit: "";
+    
+    callback value-changed(float);
+    
+    spacing: 5px;
+    
+    HorizontalLayout {
+        Text {
+            text: label;
+            font-weight: 600;
+            vertical-alignment: center;
+        }
+        
+        Rectangle {
+            horizontal-stretch: 1;
+        }
+        
+        Text {
+            text: "\{value}\{unit}";
+            color: #666;
+            vertical-alignment: center;
+            min-width: 60px;
+            horizontal-alignment: right;
+        }
+    }
+    
+    Slider {
+        value <=> root.value;
+        minimum: root.minimum;
+        maximum: root.maximum;
+        
+        changed(val) => {
+            root.value-changed(val);
+        }
+    }
+}

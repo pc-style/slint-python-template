@@ -1,0 +1,320 @@
+import { SliderGroup } from "../components/SliderGroup.slint";
+import { CheckboxGroup } from "../components/CheckboxGroup.slint";
+import { ComboBoxGroup } from "../components/ComboBoxGroup.slint";
+
+export component AimSettings inherits ScrollView {
+    // Properties for all aim settings
+    in-out property <float> aim-offset: 0;
+    in-out property <float> aim-smooth: 0.9;
+    in-out property <float> aim-speed: 0.5;
+    in-out property <float> aim-y-speed: 0.2;
+    in-out property <float> aim-height: 0.7;
+    in-out property <string> smoothing-type: "bezier";
+    in-out property <float> ease-factor: 2.0;
+    in-out property <float> min-ease-speed: 0.2;
+    in-out property <float> bezier-control-offset: 0.3;
+    in-out property <float> bezier-tension: 1.0;
+    in-out property <float> movement-randomness: 0.1;
+    in-out property <float> deadzone: 10;
+    in-out property <bool> enable-anti-shake: true;
+    in-out property <float> anti-shake-threshold: 0.05;
+    in-out property <float> shake-suppression-factor: 0.7;
+    in-out property <float> shake-escalation-threshold: 0.2;
+    in-out property <float> shake-escalation-rate: 0.1;
+    in-out property <float> shake-cooldown-duration: 2.0;
+    
+    // Callbacks
+    callback aim-offset-changed(float);
+    callback aim-smooth-changed(float);
+    callback aim-speed-changed(float);
+    callback aim-y-speed-changed(float);
+    callback aim-height-changed(float);
+    callback smoothing-type-changed(string);
+    callback ease-factor-changed(float);
+    callback min-ease-speed-changed(float);
+    callback bezier-control-offset-changed(float);
+    callback bezier-tension-changed(float);
+    callback movement-randomness-changed(float);
+    callback deadzone-changed(float);
+    callback enable-anti-shake-changed(bool);
+    callback anti-shake-threshold-changed(float);
+    callback shake-suppression-factor-changed(float);
+    callback shake-escalation-threshold-changed(float);
+    callback shake-escalation-rate-changed(float);
+    callback shake-cooldown-duration-changed(float);
+    
+    VerticalLayout {
+        padding: 20px;
+        spacing: 20px;
+        
+        // Basic Aim Settings Section
+        Rectangle {
+            background: #f8f9fa;
+            border-radius: 8px;
+            
+            VerticalLayout {
+                padding: 15px;
+                spacing: 10px;
+                
+                Text {
+                    text: "Basic Aim Settings";
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #2c3e50;
+                }
+                
+                SliderGroup {
+                    label: "Aim Offset";
+                    value <=> root.aim-offset;
+                    minimum: -50;
+                    maximum: 50;
+                    unit: " px";
+                    
+                    value-changed(val) => {
+                        root.aim-offset-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Smoothing";
+                    value <=> root.aim-smooth;
+                    minimum: 0.1;
+                    maximum: 1.0;
+                    
+                    value-changed(val) => {
+                        root.aim-smooth-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Base Speed";
+                    value <=> root.aim-speed;
+                    minimum: 0.1;
+                    maximum: 2.0;
+                    
+                    value-changed(val) => {
+                        root.aim-speed-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Y Speed";
+                    value <=> root.aim-y-speed;
+                    minimum: 0.1;
+                    maximum: 1.0;
+                    
+                    value-changed(val) => {
+                        root.aim-y-speed-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Aim Height";
+                    value <=> root.aim-height;
+                    minimum: 0.1;
+                    maximum: 1.0;
+                    
+                    value-changed(val) => {
+                        root.aim-height-changed(val);
+                    }
+                }
+            }
+        }
+        
+        // Smoothing Settings Section
+        Rectangle {
+            background: #f8f9fa;
+            border-radius: 8px;
+            
+            VerticalLayout {
+                padding: 15px;
+                spacing: 10px;
+                
+                Text {
+                    text: "Smoothing Settings";
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #2c3e50;
+                }
+                
+                ComboBoxGroup {
+                    label: "Smoothing Type";
+                    current-value <=> root.smoothing-type;
+                    model: ["linear", "ease_in_out", "bezier"];
+                    
+                    selected(value) => {
+                        root.smoothing-type-changed(value);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Ease Factor";
+                    value <=> root.ease-factor;
+                    minimum: 1.0;
+                    maximum: 5.0;
+                    
+                    value-changed(val) => {
+                        root.ease-factor-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Min Ease Speed";
+                    value <=> root.min-ease-speed;
+                    minimum: 0.0;
+                    maximum: 1.0;
+                    
+                    value-changed(val) => {
+                        root.min-ease-speed-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Bézier Control Offset";
+                    value <=> root.bezier-control-offset;
+                    minimum: 0.0;
+                    maximum: 1.0;
+                    
+                    value-changed(val) => {
+                        root.bezier-control-offset-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Bézier Tension";
+                    value <=> root.bezier-tension;
+                    minimum: 0.1;
+                    maximum: 2.0;
+                    
+                    value-changed(val) => {
+                        root.bezier-tension-changed(val);
+                    }
+                }
+            }
+        }
+        
+        // Movement Settings Section
+        Rectangle {
+            background: #f8f9fa;
+            border-radius: 8px;
+            
+            VerticalLayout {
+                padding: 15px;
+                spacing: 10px;
+                
+                Text {
+                    text: "Movement Settings";
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #2c3e50;
+                }
+                
+                SliderGroup {
+                    label: "Movement Randomness";
+                    value <=> root.movement-randomness;
+                    minimum: 0.0;
+                    maximum: 0.5;
+                    
+                    value-changed(val) => {
+                        root.movement-randomness-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Deadzone";
+                    value <=> root.deadzone;
+                    minimum: 0;
+                    maximum: 50;
+                    unit: " px";
+                    
+                    value-changed(val) => {
+                        root.deadzone-changed(val);
+                    }
+                }
+            }
+        }
+        
+        // Anti-Shake Settings Section
+        Rectangle {
+            background: #f8f9fa;
+            border-radius: 8px;
+            
+            VerticalLayout {
+                padding: 15px;
+                spacing: 10px;
+                
+                Text {
+                    text: "Anti-Shake Settings";
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #2c3e50;
+                }
+                
+                CheckboxGroup {
+                    label: "Enable Anti-Shake";
+                    checked <=> root.enable-anti-shake;
+                    
+                    toggled(val) => {
+                        root.enable-anti-shake-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Anti-Shake Threshold";
+                    value <=> root.anti-shake-threshold;
+                    minimum: 0.01;
+                    maximum: 0.2;
+                    
+                    value-changed(val) => {
+                        root.anti-shake-threshold-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Shake Suppression Factor";
+                    value <=> root.shake-suppression-factor;
+                    minimum: 0.1;
+                    maximum: 1.0;
+                    
+                    value-changed(val) => {
+                        root.shake-suppression-factor-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Shake Escalation Threshold";
+                    value <=> root.shake-escalation-threshold;
+                    minimum: 0.1;
+                    maximum: 0.5;
+                    
+                    value-changed(val) => {
+                        root.shake-escalation-threshold-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Shake Escalation Rate";
+                    value <=> root.shake-escalation-rate;
+                    minimum: 0.05;
+                    maximum: 0.3;
+                    
+                    value-changed(val) => {
+                        root.shake-escalation-rate-changed(val);
+                    }
+                }
+                
+                SliderGroup {
+                    label: "Shake Cooldown Duration";
+                    value <=> root.shake-cooldown-duration;
+                    minimum: 0.5;
+                    maximum: 10.0;
+                    unit: " sec";
+                    
+                    value-changed(val) => {
+                        root.shake-cooldown-duration-changed(val);
+                    }
+                }
+            }
+        }
+    }
+}

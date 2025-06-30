@@ -1,0 +1,25 @@
+import { ComboBox } from "std-widgets.slint";
+
+export component ComboBoxGroup inherits VerticalLayout {
+    in property <string> label;
+    in-out property <string> current-value;
+    in property <[string]> model;
+    
+    callback selected(string);
+    
+    spacing: 5px;
+    
+    Text {
+        text: label;
+        font-weight: 600;
+    }
+    
+    ComboBox {
+        model: root.model;
+        current-value <=> root.current-value;
+        
+        selected(value) => {
+            root.selected(value);
+        }
+    }
+}
