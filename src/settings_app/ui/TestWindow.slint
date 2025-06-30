@@ -1,0 +1,29 @@
+import { Button } from "std-widgets.slint";
+
+export component TestWindow inherits Window {
+    in-out property <float> test_value: 42;
+    
+    callback test_callback(float);
+    
+    title: "Test Window";
+    width: 400px;
+    height: 300px;
+    
+    VerticalLayout {
+        padding: 20px;
+        spacing: 10px;
+        
+        Text {
+            text: "Test Value: \{test_value}";
+            font-size: 16px;
+        }
+        
+        Button {
+            text: "Test Button";
+            
+            clicked => {
+                root.test_callback(root.test_value);
+            }
+        }
+    }
+}

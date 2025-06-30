@@ -2,7 +2,7 @@ import { ComboBox } from "std-widgets.slint";
 
 export component ComboBoxGroup inherits VerticalLayout {
     in property <string> label;
-    in-out property <string> current-value;
+    in-out property <string> current_value;
     in property <[string]> model;
     
     callback selected(string);
@@ -16,7 +16,7 @@ export component ComboBoxGroup inherits VerticalLayout {
     
     ComboBox {
         model: root.model;
-        current-value <=> root.current-value;
+        current-value <=> root.current_value;
         
         selected(value) => {
             root.selected(value);

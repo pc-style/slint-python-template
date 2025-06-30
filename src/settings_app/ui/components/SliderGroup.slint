@@ -7,7 +7,7 @@ export component SliderGroup inherits VerticalLayout {
     in property <float> maximum;
     in property <string> unit: "";
     
-    callback value-changed(float);
+    callback value_changed(float);
     
     spacing: 5px;
     
@@ -37,7 +37,7 @@ export component SliderGroup inherits VerticalLayout {
         maximum: root.maximum;
         
         changed(val) => {
-            root.value-changed(val);
+            root.value_changed(val);
         }
     }
 }

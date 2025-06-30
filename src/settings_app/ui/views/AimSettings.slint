@@ -4,44 +4,44 @@ import { ComboBoxGroup } from "../components/ComboBoxGroup.slint";
 
 export component AimSettings inherits ScrollView {
     // Properties for all aim settings
-    in-out property <float> aim-offset: 0;
-    in-out property <float> aim-smooth: 0.9;
-    in-out property <float> aim-speed: 0.5;
-    in-out property <float> aim-y-speed: 0.2;
-    in-out property <float> aim-height: 0.7;
-    in-out property <string> smoothing-type: "bezier";
-    in-out property <float> ease-factor: 2.0;
-    in-out property <float> min-ease-speed: 0.2;
-    in-out property <float> bezier-control-offset: 0.3;
-    in-out property <float> bezier-tension: 1.0;
-    in-out property <float> movement-randomness: 0.1;
+    in-out property <float> aim_offset: 0;
+    in-out property <float> aim_smooth: 0.9;
+    in-out property <float> aim_speed: 0.5;
+    in-out property <float> aim_y_speed: 0.2;
+    in-out property <float> aim_height: 0.7;
+    in-out property <string> smoothing_type: "bezier";
+    in-out property <float> ease_factor: 2.0;
+    in-out property <float> min_ease_speed: 0.2;
+    in-out property <float> bezier_control_offset: 0.3;
+    in-out property <float> bezier_tension: 1.0;
+    in-out property <float> movement_randomness: 0.1;
     in-out property <float> deadzone: 10;
-    in-out property <bool> enable-anti-shake: true;
-    in-out property <float> anti-shake-threshold: 0.05;
-    in-out property <float> shake-suppression-factor: 0.7;
-    in-out property <float> shake-escalation-threshold: 0.2;
-    in-out property <float> shake-escalation-rate: 0.1;
-    in-out property <float> shake-cooldown-duration: 2.0;
+    in-out property <bool> enable_anti_shake: true;
+    in-out property <float> anti_shake_threshold: 0.05;
+    in-out property <float> shake_suppression_factor: 0.7;
+    in-out property <float> shake_escalation_threshold: 0.2;
+    in-out property <float> shake_escalation_rate: 0.1;
+    in-out property <float> shake_cooldown_duration: 2.0;
     
     // Callbacks
-    callback aim-offset-changed(float);
-    callback aim-smooth-changed(float);
-    callback aim-speed-changed(float);
-    callback aim-y-speed-changed(float);
-    callback aim-height-changed(float);
-    callback smoothing-type-changed(string);
-    callback ease-factor-changed(float);
-    callback min-ease-speed-changed(float);
-    callback bezier-control-offset-changed(float);
-    callback bezier-tension-changed(float);
-    callback movement-randomness-changed(float);
-    callback deadzone-changed(float);
-    callback enable-anti-shake-changed(bool);
-    callback anti-shake-threshold-changed(float);
-    callback shake-suppression-factor-changed(float);
-    callback shake-escalation-threshold-changed(float);
-    callback shake-escalation-rate-changed(float);
-    callback shake-cooldown-duration-changed(float);
+    callback aim_offset_changed(float);
+    callback aim_smooth_changed(float);
+    callback aim_speed_changed(float);
+    callback aim_y_speed_changed(float);
+    callback aim_height_changed(float);
+    callback smoothing_type_changed(string);
+    callback ease_factor_changed(float);
+    callback min_ease_speed_changed(float);
+    callback bezier_control_offset_changed(float);
+    callback bezier_tension_changed(float);
+    callback movement_randomness_changed(float);
+    callback deadzone_changed(float);
+    callback enable_anti_shake_changed(bool);
+    callback anti_shake_threshold_changed(float);
+    callback shake_suppression_factor_changed(float);
+    callback shake_escalation_threshold_changed(float);
+    callback shake_escalation_rate_changed(float);
+    callback shake_cooldown_duration_changed(float);
     
     VerticalLayout {
         padding: 20px;
@@ -65,57 +65,57 @@ export component AimSettings inherits ScrollView {
                 
                 SliderGroup {
                     label: "Aim Offset";
-                    value <=> root.aim-offset;
+                    value <=> root.aim_offset;
                     minimum: -50;
                     maximum: 50;
                     unit: " px";
                     
-                    value-changed(val) => {
-                        root.aim-offset-changed(val);
+                    value_changed(val) => {
+                        root.aim_offset_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Smoothing";
-                    value <=> root.aim-smooth;
+                    value <=> root.aim_smooth;
                     minimum: 0.1;
                     maximum: 1.0;
                     
-                    value-changed(val) => {
-                        root.aim-smooth-changed(val);
+                    value_changed(val) => {
+                        root.aim_smooth_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Base Speed";
-                    value <=> root.aim-speed;
+                    value <=> root.aim_speed;
                     minimum: 0.1;
                     maximum: 2.0;
                     
-                    value-changed(val) => {
-                        root.aim-speed-changed(val);
+                    value_changed(val) => {
+                        root.aim_speed_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Y Speed";
-                    value <=> root.aim-y-speed;
+                    value <=> root.aim_y_speed;
                     minimum: 0.1;
                     maximum: 1.0;
                     
-                    value-changed(val) => {
-                        root.aim-y-speed-changed(val);
+                    value_changed(val) => {
+                        root.aim_y_speed_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Aim Height";
-                    value <=> root.aim-height;
+                    value <=> root.aim_height;
                     minimum: 0.1;
                     maximum: 1.0;
                     
-                    value-changed(val) => {
-                        root.aim-height-changed(val);
+                    value_changed(val) => {
+                        root.aim_height_changed(val);
                     }
                 }
             }
@@ -139,55 +139,55 @@ export component AimSettings inherits ScrollView {
                 
                 ComboBoxGroup {
                     label: "Smoothing Type";
-                    current-value <=> root.smoothing-type;
+                    current_value <=> root.smoothing_type;
                     model: ["linear", "ease_in_out", "bezier"];
                     
                     selected(value) => {
-                        root.smoothing-type-changed(value);
+                        root.smoothing_type_changed(value);
                     }
                 }
                 
                 SliderGroup {
                     label: "Ease Factor";
-                    value <=> root.ease-factor;
+                    value <=> root.ease_factor;
                     minimum: 1.0;
                     maximum: 5.0;
                     
-                    value-changed(val) => {
-                        root.ease-factor-changed(val);
+                    value_changed(val) => {
+                        root.ease_factor_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Min Ease Speed";
-                    value <=> root.min-ease-speed;
+                    value <=> root.min_ease_speed;
                     minimum: 0.0;
                     maximum: 1.0;
                     
-                    value-changed(val) => {
-                        root.min-ease-speed-changed(val);
+                    value_changed(val) => {
+                        root.min_ease_speed_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Bézier Control Offset";
-                    value <=> root.bezier-control-offset;
+                    value <=> root.bezier_control_offset;
                     minimum: 0.0;
                     maximum: 1.0;
                     
-                    value-changed(val) => {
-                        root.bezier-control-offset-changed(val);
+                    value_changed(val) => {
+                        root.bezier_control_offset_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Bézier Tension";
-                    value <=> root.bezier-tension;
+                    value <=> root.bezier_tension;
                     minimum: 0.1;
                     maximum: 2.0;
                     
-                    value-changed(val) => {
-                        root.bezier-tension-changed(val);
+                    value_changed(val) => {
+                        root.bezier_tension_changed(val);
                     }
                 }
             }
@@ -211,12 +211,12 @@ export component AimSettings inherits ScrollView {
                 
                 SliderGroup {
                     label: "Movement Randomness";
-                    value <=> root.movement-randomness;
+                    value <=> root.movement_randomness;
                     minimum: 0.0;
                     maximum: 0.5;
                     
-                    value-changed(val) => {
-                        root.movement-randomness-changed(val);
+                    value_changed(val) => {
+                        root.movement_randomness_changed(val);
                     }
                 }
                 
@@ -227,8 +227,8 @@ export component AimSettings inherits ScrollView {
                     maximum: 50;
                     unit: " px";
                     
-                    value-changed(val) => {
-                        root.deadzone-changed(val);
+                    value_changed(val) => {
+                        root.deadzone_changed(val);
                     }
                 }
             }
@@ -252,66 +252,66 @@ export component AimSettings inherits ScrollView {
                 
                 CheckboxGroup {
                     label: "Enable Anti-Shake";
-                    checked <=> root.enable-anti-shake;
+                    checked <=> root.enable_anti_shake;
                     
                     toggled(val) => {
-                        root.enable-anti-shake-changed(val);
+                        root.enable_anti_shake_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Anti-Shake Threshold";
-                    value <=> root.anti-shake-threshold;
+                    value <=> root.anti_shake_threshold;
                     minimum: 0.01;
                     maximum: 0.2;
                     
-                    value-changed(val) => {
-                        root.anti-shake-threshold-changed(val);
+                    value_changed(val) => {
+                        root.anti_shake_threshold_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Shake Suppression Factor";
-                    value <=> root.shake-suppression-factor;
+                    value <=> root.shake_suppression_factor;
                     minimum: 0.1;
                     maximum: 1.0;
                     
-                    value-changed(val) => {
-                        root.shake-suppression-factor-changed(val);
+                    value_changed(val) => {
+                        root.shake_suppression_factor_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Shake Escalation Threshold";
-                    value <=> root.shake-escalation-threshold;
+                    value <=> root.shake_escalation_threshold;
                     minimum: 0.1;
                     maximum: 0.5;
                     
-                    value-changed(val) => {
-                        root.shake-escalation-threshold-changed(val);
+                    value_changed(val) => {
+                        root.shake_escalation_threshold_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Shake Escalation Rate";
-                    value <=> root.shake-escalation-rate;
+                    value <=> root.shake_escalation_rate;
                     minimum: 0.05;
                     maximum: 0.3;
                     
-                    value-changed(val) => {
-                        root.shake-escalation-rate-changed(val);
+                    value_changed(val) => {
+                        root.shake_escalation_rate_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Shake Cooldown Duration";
-                    value <=> root.shake-cooldown-duration;
+                    value <=> root.shake_cooldown_duration;
                     minimum: 0.5;
                     maximum: 10.0;
                     unit: " sec";
                     
-                    value-changed(val) => {
-                        root.shake-cooldown-duration-changed(val);
+                    value_changed(val) => {
+                        root.shake_cooldown_duration_changed(val);
                     }
                 }
             }

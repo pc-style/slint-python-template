@@ -3,52 +3,52 @@ import { CheckboxGroup } from "../components/CheckboxGroup.slint";
 
 export component DetectionSettings inherits ScrollView {
     // Properties for all detection settings
-    in-out property <float> detection-threshold-x: 3;
-    in-out property <float> detection-threshold-y: 3;
-    in-out property <float> upper-color-r: 154;
-    in-out property <float> upper-color-g: 165;
-    in-out property <float> upper-color-b: 175;
-    in-out property <float> lower-color-r: 141;
-    in-out property <float> lower-color-g: 88;
-    in-out property <float> lower-color-b: 58;
-    in-out property <float> min-contour-area: 261;
-    in-out property <float> density-threshold: 0.5;
-    in-out property <bool> enable-clustering: true;
-    in-out property <float> cluster-distance: 40;
-    in-out property <float> min-cluster-size: 1000;
-    in-out property <float> max-cluster-size: 20000;
-    in-out property <float> fov-x: 400;
-    in-out property <float> fov-y: 400;
-    in-out property <float> aim-fov-x: 400;
-    in-out property <float> aim-fov-y: 400;
+    in-out property <float> detection_threshold_x: 3;
+    in-out property <float> detection_threshold_y: 3;
+    in-out property <float> upper_color_r: 154;
+    in-out property <float> upper_color_g: 165;
+    in-out property <float> upper_color_b: 175;
+    in-out property <float> lower_color_r: 141;
+    in-out property <float> lower_color_g: 88;
+    in-out property <float> lower_color_b: 58;
+    in-out property <float> min_contour_area: 261;
+    in-out property <float> density_threshold: 0.5;
+    in-out property <bool> enable_clustering: true;
+    in-out property <float> cluster_distance: 40;
+    in-out property <float> min_cluster_size: 1000;
+    in-out property <float> max_cluster_size: 20000;
+    in-out property <float> fov_x: 400;
+    in-out property <float> fov_y: 400;
+    in-out property <float> aim_fov_x: 400;
+    in-out property <float> aim_fov_y: 400;
     in-out property <float> fps: 120;
-    in-out property <bool> auto-detect-resolution: true;
-    in-out property <float> resolution-x: 1920;
-    in-out property <float> resolution-y: 1080;
+    in-out property <bool> auto_detect_resolution: true;
+    in-out property <float> resolution_x: 1920;
+    in-out property <float> resolution_y: 1080;
     
     // Callbacks
-    callback detection-threshold-x-changed(float);
-    callback detection-threshold-y-changed(float);
-    callback upper-color-r-changed(float);
-    callback upper-color-g-changed(float);
-    callback upper-color-b-changed(float);
-    callback lower-color-r-changed(float);
-    callback lower-color-g-changed(float);
-    callback lower-color-b-changed(float);
-    callback min-contour-area-changed(float);
-    callback density-threshold-changed(float);
-    callback enable-clustering-changed(bool);
-    callback cluster-distance-changed(float);
-    callback min-cluster-size-changed(float);
-    callback max-cluster-size-changed(float);
-    callback fov-x-changed(float);
-    callback fov-y-changed(float);
-    callback aim-fov-x-changed(float);
-    callback aim-fov-y-changed(float);
-    callback fps-changed(float);
-    callback auto-detect-resolution-changed(bool);
-    callback resolution-x-changed(float);
-    callback resolution-y-changed(float);
+    callback detection_threshold_x_changed(float);
+    callback detection_threshold_y_changed(float);
+    callback upper_color_r_changed(float);
+    callback upper_color_g_changed(float);
+    callback upper_color_b_changed(float);
+    callback lower_color_r_changed(float);
+    callback lower_color_g_changed(float);
+    callback lower_color_b_changed(float);
+    callback min_contour_area_changed(float);
+    callback density_threshold_changed(float);
+    callback enable_clustering_changed(bool);
+    callback cluster_distance_changed(float);
+    callback min_cluster_size_changed(float);
+    callback max_cluster_size_changed(float);
+    callback fov_x_changed(float);
+    callback fov_y_changed(float);
+    callback aim_fov_x_changed(float);
+    callback aim_fov_y_changed(float);
+    callback fps_changed(float);
+    callback auto_detect_resolution_changed(bool);
+    callback resolution_x_changed(float);
+    callback resolution_y_changed(float);
     
     VerticalLayout {
         padding: 20px;
@@ -72,23 +72,23 @@ export component DetectionSettings inherits ScrollView {
                 
                 SliderGroup {
                     label: "Threshold X";
-                    value <=> root.detection-threshold-x;
+                    value <=> root.detection_threshold_x;
                     minimum: 0;
                     maximum: 10;
                     
-                    value-changed(val) => {
-                        root.detection-threshold-x-changed(val);
+                    value_changed(val) => {
+                        root.detection_threshold_x_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Threshold Y";
-                    value <=> root.detection-threshold-y;
+                    value <=> root.detection_threshold_y;
                     minimum: 0;
                     maximum: 10;
                     
-                    value-changed(val) => {
-                        root.detection-threshold-y-changed(val);
+                    value_changed(val) => {
+                        root.detection_threshold_y_changed(val);
                     }
                 }
             }
@@ -118,34 +118,34 @@ export component DetectionSettings inherits ScrollView {
                 
                 SliderGroup {
                     label: "Red";
-                    value <=> root.upper-color-r;
+                    value <=> root.upper_color_r;
                     minimum: 0;
                     maximum: 255;
                     
-                    value-changed(val) => {
-                        root.upper-color-r-changed(val);
+                    value_changed(val) => {
+                        root.upper_color_r_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Green";
-                    value <=> root.upper-color-g;
+                    value <=> root.upper_color_g;
                     minimum: 0;
                     maximum: 255;
                     
-                    value-changed(val) => {
-                        root.upper-color-g-changed(val);
+                    value_changed(val) => {
+                        root.upper_color_g_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Blue";
-                    value <=> root.upper-color-b;
+                    value <=> root.upper_color_b;
                     minimum: 0;
                     maximum: 255;
                     
-                    value-changed(val) => {
-                        root.upper-color-b-changed(val);
+                    value_changed(val) => {
+                        root.upper_color_b_changed(val);
                     }
                 }
                 
@@ -157,34 +157,34 @@ export component DetectionSettings inherits ScrollView {
                 
                 SliderGroup {
                     label: "Red";
-                    value <=> root.lower-color-r;
+                    value <=> root.lower_color_r;
                     minimum: 0;
                     maximum: 255;
                     
-                    value-changed(val) => {
-                        root.lower-color-r-changed(val);
+                    value_changed(val) => {
+                        root.lower_color_r_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Green";
-                    value <=> root.lower-color-g;
+                    value <=> root.lower_color_g;
                     minimum: 0;
                     maximum: 255;
                     
-                    value-changed(val) => {
-                        root.lower-color-g-changed(val);
+                    value_changed(val) => {
+                        root.lower_color_g_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Blue";
-                    value <=> root.lower-color-b;
+                    value <=> root.lower_color_b;
                     minimum: 0;
                     maximum: 255;
                     
-                    value-changed(val) => {
-                        root.lower-color-b-changed(val);
+                    value_changed(val) => {
+                        root.lower_color_b_changed(val);
                     }
                 }
             }
@@ -208,69 +208,69 @@ export component DetectionSettings inherits ScrollView {
                 
                 SliderGroup {
                     label: "Min Contour Area";
-                    value <=> root.min-contour-area;
+                    value <=> root.min_contour_area;
                     minimum: 0;
                     maximum: 1000;
                     unit: " px²";
                     
-                    value-changed(val) => {
-                        root.min-contour-area-changed(val);
+                    value_changed(val) => {
+                        root.min_contour_area_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Density Threshold";
-                    value <=> root.density-threshold;
+                    value <=> root.density_threshold;
                     minimum: 0;
                     maximum: 1;
                     
-                    value-changed(val) => {
-                        root.density-threshold-changed(val);
+                    value_changed(val) => {
+                        root.density_threshold_changed(val);
                     }
                 }
                 
                 CheckboxGroup {
                     label: "Enable Clustering";
-                    checked <=> root.enable-clustering;
+                    checked <=> root.enable_clustering;
                     
                     toggled(val) => {
-                        root.enable-clustering-changed(val);
+                        root.enable_clustering_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Cluster Distance";
-                    value <=> root.cluster-distance;
+                    value <=> root.cluster_distance;
                     minimum: 0;
                     maximum: 100;
                     unit: " px";
                     
-                    value-changed(val) => {
-                        root.cluster-distance-changed(val);
+                    value_changed(val) => {
+                        root.cluster_distance_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Min Cluster Size";
-                    value <=> root.min-cluster-size;
+                    value <=> root.min_cluster_size;
                     minimum: 0;
                     maximum: 5000;
                     unit: " px²";
                     
-                    value-changed(val) => {
-                        root.min-cluster-size-changed(val);
+                    value_changed(val) => {
+                        root.min_cluster_size_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Max Cluster Size";
-                    value <=> root.max-cluster-size;
+                    value <=> root.max_cluster_size;
                     minimum: 5000;
                     maximum: 50000;
                     unit: " px²";
                     
-                    value-changed(val) => {
-                        root.max-cluster-size-changed(val);
+                    value_changed(val) => {
+                        root.max_cluster_size_changed(val);
                     }
                 }
             }
@@ -294,49 +294,49 @@ export component DetectionSettings inherits ScrollView {
                 
                 SliderGroup {
                     label: "FOV X";
-                    value <=> root.fov-x;
+                    value <=> root.fov_x;
                     minimum: 100;
                     maximum: 1000;
                     unit: " px";
                     
-                    value-changed(val) => {
-                        root.fov-x-changed(val);
+                    value_changed(val) => {
+                        root.fov_x_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "FOV Y";
-                    value <=> root.fov-y;
+                    value <=> root.fov_y;
                     minimum: 100;
                     maximum: 1000;
                     unit: " px";
                     
-                    value-changed(val) => {
-                        root.fov-y-changed(val);
+                    value_changed(val) => {
+                        root.fov_y_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Aim FOV X";
-                    value <=> root.aim-fov-x;
+                    value <=> root.aim_fov_x;
                     minimum: 100;
                     maximum: 1000;
                     unit: " px";
                     
-                    value-changed(val) => {
-                        root.aim-fov-x-changed(val);
+                    value_changed(val) => {
+                        root.aim_fov_x_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Aim FOV Y";
-                    value <=> root.aim-fov-y;
+                    value <=> root.aim_fov_y;
                     minimum: 100;
                     maximum: 1000;
                     unit: " px";
                     
-                    value-changed(val) => {
-                        root.aim-fov-y-changed(val);
+                    value_changed(val) => {
+                        root.aim_fov_y_changed(val);
                     }
                 }
             }
@@ -365,41 +365,41 @@ export component DetectionSettings inherits ScrollView {
                     maximum: 240;
                     unit: " fps";
                     
-                    value-changed(val) => {
-                        root.fps-changed(val);
+                    value_changed(val) => {
+                        root.fps_changed(val);
                     }
                 }
                 
                 CheckboxGroup {
                     label: "Auto Detect Resolution";
-                    checked <=> root.auto-detect-resolution;
+                    checked <=> root.auto_detect_resolution;
                     
                     toggled(val) => {
-                        root.auto-detect-resolution-changed(val);
+                        root.auto_detect_resolution_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Resolution X";
-                    value <=> root.resolution-x;
+                    value <=> root.resolution_x;
                     minimum: 800;
                     maximum: 3840;
                     unit: " px";
                     
-                    value-changed(val) => {
-                        root.resolution-x-changed(val);
+                    value_changed(val) => {
+                        root.resolution_x_changed(val);
                     }
                 }
                 
                 SliderGroup {
                     label: "Resolution Y";
-                    value <=> root.resolution-y;
+                    value <=> root.resolution_y;
                     minimum: 600;
                     maximum: 2160;
                     unit: " px";
                     
-                    value-changed(val) => {
-                        root.resolution-y-changed(val);
+                    value_changed(val) => {
+                        root.resolution_y_changed(val);
                     }
                 }
             }

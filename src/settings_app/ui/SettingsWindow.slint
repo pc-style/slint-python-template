@@ -6,98 +6,100 @@ export component SettingsWindow inherits Window {
     in-out property <[int]> size;
     in-out property <[int]> maxSize;
     
-    // All the properties that need to be exposed for the Python callbacks
-    in-out property <float> detection-threshold-x: 3;
-    in-out property <float> detection-threshold-y: 3;
-    in-out property <float> upper-color-r: 154;
-    in-out property <float> upper-color-g: 165;
-    in-out property <float> upper-color-b: 175;
-    in-out property <float> lower-color-r: 141;
-    in-out property <float> lower-color-g: 88;
-    in-out property <float> lower-color-b: 58;
-    in-out property <float> min-contour-area: 261;
-    in-out property <float> density-threshold: 0.5;
-    in-out property <bool> enable-clustering: true;
-    in-out property <float> cluster-distance: 40;
-    in-out property <float> min-cluster-size: 1000;
-    in-out property <float> max-cluster-size: 20000;
-    in-out property <float> fov-x: 400;
-    in-out property <float> fov-y: 400;
-    in-out property <float> aim-fov-x: 400;
-    in-out property <float> aim-fov-y: 400;
+    // Detection properties
+    in-out property <float> detection_threshold_x: 3;
+    in-out property <float> detection_threshold_y: 3;
+    in-out property <float> upper_color_r: 154;
+    in-out property <float> upper_color_g: 165;
+    in-out property <float> upper_color_b: 175;
+    in-out property <float> lower_color_r: 141;
+    in-out property <float> lower_color_g: 88;
+    in-out property <float> lower_color_b: 58;
+    in-out property <float> min_contour_area: 261;
+    in-out property <float> density_threshold: 0.5;
+    in-out property <bool> enable_clustering: true;
+    in-out property <float> cluster_distance: 40;
+    in-out property <float> min_cluster_size: 1000;
+    in-out property <float> max_cluster_size: 20000;
+    in-out property <float> fov_x: 400;
+    in-out property <float> fov_y: 400;
+    in-out property <float> aim_fov_x: 400;
+    in-out property <float> aim_fov_y: 400;
     in-out property <float> fps: 120;
-    in-out property <bool> auto-detect-resolution: true;
-    in-out property <float> resolution-x: 1920;
-    in-out property <float> resolution-y: 1080;
+    in-out property <bool> auto_detect_resolution: true;
+    in-out property <float> resolution_x: 1920;
+    in-out property <float> resolution_y: 1080;
     
-    in-out property <float> aim-offset: 0;
-    in-out property <float> aim-smooth: 0.9;
-    in-out property <float> aim-speed: 0.5;
-    in-out property <float> aim-y-speed: 0.2;
-    in-out property <float> aim-height: 0.7;
-    in-out property <string> smoothing-type: "bezier";
-    in-out property <float> ease-factor: 2.0;
-    in-out property <float> min-ease-speed: 0.2;
-    in-out property <float> bezier-control-offset: 0.3;
-    in-out property <float> bezier-tension: 1.0;
-    in-out property <float> movement-randomness: 0.1;
+    // Aim properties
+    in-out property <float> aim_offset: 0;
+    in-out property <float> aim_smooth: 0.9;
+    in-out property <float> aim_speed: 0.5;
+    in-out property <float> aim_y_speed: 0.2;
+    in-out property <float> aim_height: 0.7;
+    in-out property <string> smoothing_type: "bezier";
+    in-out property <float> ease_factor: 2.0;
+    in-out property <float> min_ease_speed: 0.2;
+    in-out property <float> bezier_control_offset: 0.3;
+    in-out property <float> bezier_tension: 1.0;
+    in-out property <float> movement_randomness: 0.1;
     in-out property <float> deadzone: 10;
-    in-out property <bool> enable-anti-shake: true;
-    in-out property <float> anti-shake-threshold: 0.05;
-    in-out property <float> shake-suppression-factor: 0.7;
-    in-out property <float> shake-escalation-threshold: 0.2;
-    in-out property <float> shake-escalation-rate: 0.1;
-    in-out property <float> shake-cooldown-duration: 2.0;
+    in-out property <bool> enable_anti_shake: true;
+    in-out property <float> anti_shake_threshold: 0.05;
+    in-out property <float> shake_suppression_factor: 0.7;
+    in-out property <float> shake_escalation_threshold: 0.2;
+    in-out property <float> shake_escalation_rate: 0.1;
+    in-out property <float> shake_cooldown_duration: 2.0;
     
-    private property <string> status-message: "Ready";
+    private property <string> status_message: "Ready";
     
-    // Callbacks for all settings changes
-    callback detection-threshold-x-changed(float);
-    callback detection-threshold-y-changed(float);
-    callback upper-color-r-changed(float);
-    callback upper-color-g-changed(float);
-    callback upper-color-b-changed(float);
-    callback lower-color-r-changed(float);
-    callback lower-color-g-changed(float);
-    callback lower-color-b-changed(float);
-    callback min-contour-area-changed(float);
-    callback density-threshold-changed(float);
-    callback enable-clustering-changed(bool);
-    callback cluster-distance-changed(float);
-    callback min-cluster-size-changed(float);
-    callback max-cluster-size-changed(float);
-    callback fov-x-changed(float);
-    callback fov-y-changed(float);
-    callback aim-fov-x-changed(float);
-    callback aim-fov-y-changed(float);
-    callback fps-changed(float);
-    callback auto-detect-resolution-changed(bool);
-    callback resolution-x-changed(float);
-    callback resolution-y-changed(float);
+    // Callbacks for detection settings
+    callback detection_threshold_x_changed(float);
+    callback detection_threshold_y_changed(float);
+    callback upper_color_r_changed(float);
+    callback upper_color_g_changed(float);
+    callback upper_color_b_changed(float);
+    callback lower_color_r_changed(float);
+    callback lower_color_g_changed(float);
+    callback lower_color_b_changed(float);
+    callback min_contour_area_changed(float);
+    callback density_threshold_changed(float);
+    callback enable_clustering_changed(bool);
+    callback cluster_distance_changed(float);
+    callback min_cluster_size_changed(float);
+    callback max_cluster_size_changed(float);
+    callback fov_x_changed(float);
+    callback fov_y_changed(float);
+    callback aim_fov_x_changed(float);
+    callback aim_fov_y_changed(float);
+    callback fps_changed(float);
+    callback auto_detect_resolution_changed(bool);
+    callback resolution_x_changed(float);
+    callback resolution_y_changed(float);
     
-    callback aim-offset-changed(float);
-    callback aim-smooth-changed(float);
-    callback aim-speed-changed(float);
-    callback aim-y-speed-changed(float);
-    callback aim-height-changed(float);
-    callback smoothing-type-changed(string);
-    callback ease-factor-changed(float);
-    callback min-ease-speed-changed(float);
-    callback bezier-control-offset-changed(float);
-    callback bezier-tension-changed(float);
-    callback movement-randomness-changed(float);
-    callback deadzone-changed(float);
-    callback enable-anti-shake-changed(bool);
-    callback anti-shake-threshold-changed(float);
-    callback shake-suppression-factor-changed(float);
-    callback shake-escalation-threshold-changed(float);
-    callback shake-escalation-rate-changed(float);
-    callback shake-cooldown-duration-changed(float);
+    // Callbacks for aim settings
+    callback aim_offset_changed(float);
+    callback aim_smooth_changed(float);
+    callback aim_speed_changed(float);
+    callback aim_y_speed_changed(float);
+    callback aim_height_changed(float);
+    callback smoothing_type_changed(string);
+    callback ease_factor_changed(float);
+    callback min_ease_speed_changed(float);
+    callback bezier_control_offset_changed(float);
+    callback bezier_tension_changed(float);
+    callback movement_randomness_changed(float);
+    callback deadzone_changed(float);
+    callback enable_anti_shake_changed(bool);
+    callback anti_shake_threshold_changed(float);
+    callback shake_suppression_factor_changed(float);
+    callback shake_escalation_threshold_changed(float);
+    callback shake_escalation_rate_changed(float);
+    callback shake_cooldown_duration_changed(float);
     
     // File operation callbacks
-    callback save-settings-callback() -> string;
-    callback load-settings-callback() -> string;
-    callback reset-to-defaults-callback();
+    callback save_settings_callback() -> string;
+    callback load_settings_callback() -> string;
+    callback reset_to_defaults_callback();
     
     default-font-size: 14px;
     
@@ -135,7 +137,7 @@ export component SettingsWindow inherits Window {
                     text: "Load Settings";
                     
                     clicked => {
-                        root.status-message = root.load-settings-callback();
+                        root.status_message = root.load_settings_callback();
                     }
                 }
                 
@@ -144,7 +146,7 @@ export component SettingsWindow inherits Window {
                     primary: true;
                     
                     clicked => {
-                        root.status-message = root.save-settings-callback();
+                        root.status_message = root.save_settings_callback();
                     }
                 }
                 
@@ -152,8 +154,8 @@ export component SettingsWindow inherits Window {
                     text: "Reset to Defaults";
                     
                     clicked => {
-                        root.reset-to-defaults-callback();
-                        root.status-message = "Settings reset to defaults";
+                        root.reset_to_defaults_callback();
+                        root.status_message = "Settings reset to defaults";
                     }
                 }
             }
@@ -169,52 +171,52 @@ export component SettingsWindow inherits Window {
                 
                 DetectionSettings {
                     // Bind all detection properties
-                    detection-threshold-x <=> root.detection-threshold-x;
-                    detection-threshold-y <=> root.detection-threshold-y;
-                    upper-color-r <=> root.upper-color-r;
-                    upper-color-g <=> root.upper-color-g;
-                    upper-color-b <=> root.upper-color-b;
-                    lower-color-r <=> root.lower-color-r;
-                    lower-color-g <=> root.lower-color-g;
-                    lower-color-b <=> root.lower-color-b;
-                    min-contour-area <=> root.min-contour-area;
-                    density-threshold <=> root.density-threshold;
-                    enable-clustering <=> root.enable-clustering;
-                    cluster-distance <=> root.cluster-distance;
-                    min-cluster-size <=> root.min-cluster-size;
-                    max-cluster-size <=> root.max-cluster-size;
-                    fov-x <=> root.fov-x;
-                    fov-y <=> root.fov-y;
-                    aim-fov-x <=> root.aim-fov-x;
-                    aim-fov-y <=> root.aim-fov-y;
+                    detection_threshold_x <=> root.detection_threshold_x;
+                    detection_threshold_y <=> root.detection_threshold_y;
+                    upper_color_r <=> root.upper_color_r;
+                    upper_color_g <=> root.upper_color_g;
+                    upper_color_b <=> root.upper_color_b;
+                    lower_color_r <=> root.lower_color_r;
+                    lower_color_g <=> root.lower_color_g;
+                    lower_color_b <=> root.lower_color_b;
+                    min_contour_area <=> root.min_contour_area;
+                    density_threshold <=> root.density_threshold;
+                    enable_clustering <=> root.enable_clustering;
+                    cluster_distance <=> root.cluster_distance;
+                    min_cluster_size <=> root.min_cluster_size;
+                    max_cluster_size <=> root.max_cluster_size;
+                    fov_x <=> root.fov_x;
+                    fov_y <=> root.fov_y;
+                    aim_fov_x <=> root.aim_fov_x;
+                    aim_fov_y <=> root.aim_fov_y;
                     fps <=> root.fps;
-                    auto-detect-resolution <=> root.auto-detect-resolution;
-                    resolution-x <=> root.resolution-x;
-                    resolution-y <=> root.resolution-y;
+                    auto_detect_resolution <=> root.auto_detect_resolution;
+                    resolution_x <=> root.resolution_x;
+                    resolution_y <=> root.resolution_y;
                     
                     // Forward all callbacks
-                    detection-threshold-x-changed(val) => { root.detection-threshold-x-changed(val); }
-                    detection-threshold-y-changed(val) => { root.detection-threshold-y-changed(val); }
-                    upper-color-r-changed(val) => { root.upper-color-r-changed(val); }
-                    upper-color-g-changed(val) => { root.upper-color-g-changed(val); }
-                    upper-color-b-changed(val) => { root.upper-color-b-changed(val); }
-                    lower-color-r-changed(val) => { root.lower-color-r-changed(val); }
-                    lower-color-g-changed(val) => { root.lower-color-g-changed(val); }
-                    lower-color-b-changed(val) => { root.lower-color-b-changed(val); }
-                    min-contour-area-changed(val) => { root.min-contour-area-changed(val); }
-                    density-threshold-changed(val) => { root.density-threshold-changed(val); }
-                    enable-clustering-changed(val) => { root.enable-clustering-changed(val); }
-                    cluster-distance-changed(val) => { root.cluster-distance-changed(val); }
-                    min-cluster-size-changed(val) => { root.min-cluster-size-changed(val); }
-                    max-cluster-size-changed(val) => { root.max-cluster-size-changed(val); }
-                    fov-x-changed(val) => { root.fov-x-changed(val); }
-                    fov-y-changed(val) => { root.fov-y-changed(val); }
-                    aim-fov-x-changed(val) => { root.aim-fov-x-changed(val); }
-                    aim-fov-y-changed(val) => { root.aim-fov-y-changed(val); }
-                    fps-changed(val) => { root.fps-changed(val); }
-                    auto-detect-resolution-changed(val) => { root.auto-detect-resolution-changed(val); }
-                    resolution-x-changed(val) => { root.resolution-x-changed(val); }
-                    resolution-y-changed(val) => { root.resolution-y-changed(val); }
+                    detection_threshold_x_changed(val) => { root.detection_threshold_x_changed(val); }
+                    detection_threshold_y_changed(val) => { root.detection_threshold_y_changed(val); }
+                    upper_color_r_changed(val) => { root.upper_color_r_changed(val); }
+                    upper_color_g_changed(val) => { root.upper_color_g_changed(val); }
+                    upper_color_b_changed(val) => { root.upper_color_b_changed(val); }
+                    lower_color_r_changed(val) => { root.lower_color_r_changed(val); }
+                    lower_color_g_changed(val) => { root.lower_color_g_changed(val); }
+                    lower_color_b_changed(val) => { root.lower_color_b_changed(val); }
+                    min_contour_area_changed(val) => { root.min_contour_area_changed(val); }
+                    density_threshold_changed(val) => { root.density_threshold_changed(val); }
+                    enable_clustering_changed(val) => { root.enable_clustering_changed(val); }
+                    cluster_distance_changed(val) => { root.cluster_distance_changed(val); }
+                    min_cluster_size_changed(val) => { root.min_cluster_size_changed(val); }
+                    max_cluster_size_changed(val) => { root.max_cluster_size_changed(val); }
+                    fov_x_changed(val) => { root.fov_x_changed(val); }
+                    fov_y_changed(val) => { root.fov_y_changed(val); }
+                    aim_fov_x_changed(val) => { root.aim_fov_x_changed(val); }
+                    aim_fov_y_changed(val) => { root.aim_fov_y_changed(val); }
+                    fps_changed(val) => { root.fps_changed(val); }
+                    auto_detect_resolution_changed(val) => { root.auto_detect_resolution_changed(val); }
+                    resolution_x_changed(val) => { root.resolution_x_changed(val); }
+                    resolution_y_changed(val) => { root.resolution_y_changed(val); }
                 }
             }
             
@@ -223,44 +225,44 @@ export component SettingsWindow inherits Window {
                 
                 AimSettings {
                     // Bind all aim properties
-                    aim-offset <=> root.aim-offset;
-                    aim-smooth <=> root.aim-smooth;
-                    aim-speed <=> root.aim-speed;
-                    aim-y-speed <=> root.aim-y-speed;
-                    aim-height <=> root.aim-height;
-                    smoothing-type <=> root.smoothing-type;
-                    ease-factor <=> root.ease-factor;
-                    min-ease-speed <=> root.min-ease-speed;
-                    bezier-control-offset <=> root.bezier-control-offset;
-                    bezier-tension <=> root.bezier-tension;
-                    movement-randomness <=> root.movement-randomness;
+                    aim_offset <=> root.aim_offset;
+                    aim_smooth <=> root.aim_smooth;
+                    aim_speed <=> root.aim_speed;
+                    aim_y_speed <=> root.aim_y_speed;
+                    aim_height <=> root.aim_height;
+                    smoothing_type <=> root.smoothing_type;
+                    ease_factor <=> root.ease_factor;
+                    min_ease_speed <=> root.min_ease_speed;
+                    bezier_control_offset <=> root.bezier_control_offset;
+                    bezier_tension <=> root.bezier_tension;
+                    movement_randomness <=> root.movement_randomness;
                     deadzone <=> root.deadzone;
-                    enable-anti-shake <=> root.enable-anti-shake;
-                    anti-shake-threshold <=> root.anti-shake-threshold;
-                    shake-suppression-factor <=> root.shake-suppression-factor;
-                    shake-escalation-threshold <=> root.shake-escalation-threshold;
-                    shake-escalation-rate <=> root.shake-escalation-rate;
-                    shake-cooldown-duration <=> root.shake-cooldown-duration;
+                    enable_anti_shake <=> root.enable_anti_shake;
+                    anti_shake_threshold <=> root.anti_shake_threshold;
+                    shake_suppression_factor <=> root.shake_suppression_factor;
+                    shake_escalation_threshold <=> root.shake_escalation_threshold;
+                    shake_escalation_rate <=> root.shake_escalation_rate;
+                    shake_cooldown_duration <=> root.shake_cooldown_duration;
                     
                     // Forward all callbacks
-                    aim-offset-changed(val) => { root.aim-offset-changed(val); }
-                    aim-smooth-changed(val) => { root.aim-smooth-changed(val); }
-                    aim-speed-changed(val) => { root.aim-speed-changed(val); }
-                    aim-y-speed-changed(val) => { root.aim-y-speed-changed(val); }
-                    aim-height-changed(val) => { root.aim-height-changed(val); }
-                    smoothing-type-changed(val) => { root.smoothing-type-changed(val); }
-                    ease-factor-changed(val) => { root.ease-factor-changed(val); }
-                    min-ease-speed-changed(val) => { root.min-ease-speed-changed(val); }
-                    bezier-control-offset-changed(val) => { root.bezier-control-offset-changed(val); }
-                    bezier-tension-changed(val) => { root.bezier-tension-changed(val); }
-                    movement-randomness-changed(val) => { root.movement-randomness-changed(val); }
-                    deadzone-changed(val) => { root.deadzone-changed(val); }
-                    enable-anti-shake-changed(val) => { root.enable-anti-shake-changed(val); }
-                    anti-shake-threshold-changed(val) => { root.anti-shake-threshold-changed(val); }
-                    shake-suppression-factor-changed(val) => { root.shake-suppression-factor-changed(val); }
-                    shake-escalation-threshold-changed(val) => { root.shake-escalation-threshold-changed(val); }
-                    shake-escalation-rate-changed(val) => { root.shake-escalation-rate-changed(val); }
-                    shake-cooldown-duration-changed(val) => { root.shake-cooldown-duration-changed(val); }
+                    aim_offset_changed(val) => { root.aim_offset_changed(val); }
+                    aim_smooth_changed(val) => { root.aim_smooth_changed(val); }
+                    aim_speed_changed(val) => { root.aim_speed_changed(val); }
+                    aim_y_speed_changed(val) => { root.aim_y_speed_changed(val); }
+                    aim_height_changed(val) => { root.aim_height_changed(val); }
+                    smoothing_type_changed(val) => { root.smoothing_type_changed(val); }
+                    ease_factor_changed(val) => { root.ease_factor_changed(val); }
+                    min_ease_speed_changed(val) => { root.min_ease_speed_changed(val); }
+                    bezier_control_offset_changed(val) => { root.bezier_control_offset_changed(val); }
+                    bezier_tension_changed(val) => { root.bezier_tension_changed(val); }
+                    movement_randomness_changed(val) => { root.movement_randomness_changed(val); }
+                    deadzone_changed(val) => { root.deadzone_changed(val); }
+                    enable_anti_shake_changed(val) => { root.enable_anti_shake_changed(val); }
+                    anti_shake_threshold_changed(val) => { root.anti_shake_threshold_changed(val); }
+                    shake_suppression_factor_changed(val) => { root.shake_suppression_factor_changed(val); }
+                    shake_escalation_threshold_changed(val) => { root.shake_escalation_threshold_changed(val); }
+                    shake_escalation_rate_changed(val) => { root.shake_escalation_rate_changed(val); }
+                    shake_cooldown_duration_changed(val) => { root.shake_cooldown_duration_changed(val); }
                 }
             }
         }
@@ -275,7 +277,7 @@ export component SettingsWindow inherits Window {
                 padding: 8px;
                 
                 Text {
-                    text: root.status-message;
+                    text: root.status_message;
                     color: #2c3e50;
                     vertical-alignment: center;
                 }
